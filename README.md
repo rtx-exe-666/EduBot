@@ -1,60 +1,48 @@
-# 🌿 EcoScan AI: Smart Waste Segregation Advisor
+# 🎓 EduBot AI — Smart 3D Teacher
 
-**EcoScan AI** is an advanced, high-fidelity waste segregation and environmental sustainability advisor built for the **HACKHAZARDS '26** hackathon. 
+**EduBot AI** is an advanced, voice-powered 3D AI teacher designed for Indian students (Classes 9-12 and competitive exams like JEE/NEET). It leverages state-of-the-art conversational AI, 3D character animation, and graph databases to make learning interactive, personalized, and multilingual.
 
-It provides users with an instant, intelligent recommendation on how to clean, sort, and properly dispose of everyday waste items. Utilizing state-of-the-art AI and graph-database technologies, EcoScan AI aims to reduce recycling contamination and drive real, measurable reductions in carbon footprints.
+Students can choose their NCERT subject, ask questions via voice in their native Indian language, scan textbook problems, generate structured notes, view relevant video lessons, and take adaptive quizzes to track their progress.
 
 ---
 
 ## 🚀 Key Features
 
-* **🔬 Dual-Mode Intelligent Classification**:
-  * **Text Query**: Type any waste item (e.g., "Plastic bottle", "Old laptop").
-  * **Multilingual Voice Input (Sarvam STT)**: Speak the item's name naturally in any of 10 supported Indian languages.
-  * **Image Upload & Camera Scan**: Upload photos or use the live-feed camera modal (with countdown and camera-flip controls) to visually classify waste items.
-* **🕸️ Neo4j Knowledge Graph Integration**:
-  * Traversing live relationships between **Waste Items**, **Material Compositions**, **Disposal Paths**, and **Color-coded Bins**.
-  * Shows related items in the same category, category item count, and full material breakdown.
-  * Features a gorgeous, interactive, animated SVG Knowledge Graph view inside the result card.
-* **🌐 Multilingual AI translation & Premium TTS**:
-  * Seamless support for **10 Indian languages** (Hindi, Bengali, Marathi, Punjabi, Gujarati, Tamil, Telugu, Kannada, Malayalam, and English).
-  * Automatically translates all classification summaries, instructions, and environmental impacts using Sarvam Translate.
-  * Provides premium natural-sounding voice read-aloud via Sarvam's Bulbul v2 TTS engine (`anushka` model), with robust browser-level text-to-speech fallback.
-* **🌱 Environmental Footprint Tracking**:
-  * Dynamically calculates and displays the estimated **grams of CO₂ saved** for proper recycling of the item.
-  * Interactive scan history sidebar to persist and review previous scans.
+* **🎙️ Voice-First Multilingual Chat (Sarvam AI)**:
+  * Speak naturally to EduBot in any of **10 Indian languages** (Hindi, Tamil, Telugu, Bengali, Marathi, Gujarati, Kannada, Malayalam, Punjabi, or English).
+  * Speech-to-Text (Sarvam STT) converts your voice into text, and the AI translates it to answer in a custom blend of English and the native language (Hinglish/Tanglish).
+  * High-quality Text-to-Speech (Sarvam TTS) reads answers aloud with natural Indian accents.
+* **🎭 3D Avatar Teacher with Live Emotions**:
+  * An animated 3D VRM avatar acts as your virtual tutor.
+  * Expresses realistic animations for **Laughing, Thinking, Sad, Shocked, Waving**, and **Conversational gestures** synced with the context of study.
+  * Robust holographic 2D CSS fallback if Three.js VRM assets are unavailable.
+* **📷 Textbook Question Scanner (Tesseract OCR)**:
+  * Upload or snapshot a math/science problem from your textbook.
+  * High-fidelity OCR extracts the text and passes it to the teacher for a step-by-step first-principles solution.
+* **📝 AI Study Notes Generator (PDF Export)**:
+  * Enter any topic to instantly generate structured, LaTeX-compatible study notes (comprising Introductions, Formulae, Worked Examples, Common Mistakes, and Summaries).
+  * Export the generated notes as a clean PDF for offline reading.
+* **🧠 Adaptive Quiz Mode**:
+  * Test your understanding with AI-generated multiple-choice questions matched to your chosen subject and topic.
+  * Interactive answers with instant feedback and progress recording.
+* **🕸️ Concept Knowledge Graph (Neo4j)**:
+  * Visualize relationships between NCERT topics and key concepts in an interactive graph layout.
+  * Tracks and highlights student mastery levels (mastered, weak, unstudied) dynamically.
+* **🎬 Video Lessons Finder (YouTube API)**:
+  * Finds the highest-rated NCERT explanation videos on YouTube for any topic you search.
 
 ---
 
 ## 🛠️ The Tech Stack
 
-EcoScan AI is built using a modern, performant, and high-performance stack:
-
-1. **Frontend & Backend**: [Next.js 15](https://nextjs.org/) (App Router, built with Turbopack for lightning-fast loads)
-2. **AI Classification**: [Google Gemini 2.0 Flash API](https://ai.google.dev/) (advanced text and multi-modal image classification)
-3. **Graph Database**: [Neo4j AuraDB](https://neo4j.com/cloud/platform/auradb/) (structured waste management ontology and relationship mapping)
-4. **Voice & Localization**: [Sarvam AI API Suite](https://www.sarvam.ai/):
-   * **Sarvam Saarika v2.5** (Speech-to-Text / STT)
-   * **Sarvam Translate** (Multilingual formal translations)
-   * **Sarvam Bulbul v2** (Natural Voice Text-to-Speech / TTS)
-5. **Styling**: Vanilla CSS3 (Custom design system featuring ultra-premium glassmorphism, glowing orbs, smooth hover states, and dynamic micro-animations)
-
----
-
-## 📊 Database Schema (Neo4j)
-
-The knowledge graph is modeled with high-integrity nodes and relationships to map the lifecycle of waste items:
-* `(:WasteItem)` — Represents specific waste objects (e.g., Plastic Bottle).
-* `(:Category)` — Groups waste into Recyclable, Organic, Hazardous, E-Waste, Medical, and General.
-* `(:Material)` — Represents physical material compositions (e.g., PET Plastic).
-* `(:DisposalMethod)` — Detailed paths of disposal (e.g., Curbside Recycling).
-* `(:BinType)` — Direct color-coded containers (e.g., Blue Recycling Bin).
-
-**Relationships**:
-* `(:WasteItem)-[:BELONGS_TO]->(:Category)`
-* `(:WasteItem)-[:MADE_OF]->(:Material)`
-* `(:WasteItem)-[:DISPOSED_VIA]->(:DisposalMethod)`
-* `(:DisposalMethod)-[:USES_BIN]->(:BinType)`
+1. **Frontend & Backend**: Next.js 16 (App Router, React 19)
+2. **3D Rendering**: Three.js & Pixiv `@pixiv/three-vrm` (WebGL VRM model loading & skeletal bone interpolation)
+3. **Graph Database**: Neo4j AuraDB (Curriculum mapping & student progress logging)
+4. **AI APIs**:
+   * **Sarvam AI**: Speech-to-Text (STT), translation, and Text-to-Speech (TTS)
+   * **YouTube Data API v3**: Contextual NCERT videos matching topics
+5. **State Management**: Zustand
+6. **Styling**: Vanilla CSS3 (Custom design system featuring ultra-premium glassmorphism, floating ambient orbs, and orange primary theme tokens `#FF6B00`)
 
 ---
 
@@ -65,43 +53,41 @@ The knowledge graph is modeled with high-integrity nodes and relationships to ma
 - NPM or Yarn
 
 ### 2. Installation
-Clone this repository and install the dependencies:
+Clone the repository and install the dependencies:
 ```bash
-git clone https://github.com/YOUR_USERNAME/waste-advisor.git
-cd waste-advisor
-npm install
+git clone https://github.com/rtx-exe-666/EduBot.git
+cd EduBot
+npm install --legacy-peer-deps
 ```
 
 ### 3. Environment Variables Setup
 Create a `.env.local` file in the root folder and add the following keys:
 ```env
-# Gemini API Key (If left blank, the app will run in high-fidelity Demo Mode)
-GEMINI_API_KEY=your_gemini_key_here
+# Sarvam AI API Key
+SARVAM_API_KEY=your_sarvam_api_key_here
 
-# Neo4j Aura Graph Database
-NEO4J_URI=neo4j+s://86bcb973.databases.neo4j.io
+# YouTube Data API v3 Key
+YOUTUBE_API_KEY=your_youtube_api_key_here
+
+# Neo4j Aura DB Credentials
+NEO4J_URI=neo4j+s://your-database-id.databases.neo4j.io
 NEO4J_USERNAME=neo4j
-NEO4J_PASSWORD=jk17a26hzWS8S10f60i6p4pT7LnncQqO7Q-U-sdHsNQ
+NEO4J_PASSWORD=your_neo4j_password_here
 
-# Sarvam AI API Credentials
-SARVAM_API_KEY=sk_tzp3mmec_z9O6RmIm8MWPLBNaPvJZhmtQ
+# Public path to load the VRM avatar
+NEXT_PUBLIC_EDUBOT_RPM_AVATAR_URL=/avatar.vrm
 ```
 
 ### 4. Database Seeding
-To automatically populate your Neo4j instance with the default waste ontology, open your browser and navigate to:
+To automatically populate your Neo4j instance with the default NCERT subject/topic hierarchy, run the application and navigate to:
 ```
 http://localhost:3000/api/seed
 ```
-This will run the Cypher scripts and build the knowledge graph instantly.
+This Cypher script creates the subject and topic nodes and prerequisite relationships.
 
 ### 5. Running the Application
 Start the development server:
 ```bash
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) to view the application.
-
----
-
-## 🌍 Together for a Sustainable Future!
-Built with 💚 for **HACKHAZARDS '26**. Let's make circular waste management smart, accessible, and multilingual!
+Open [http://localhost:3000](http://localhost:3000) in your browser.
