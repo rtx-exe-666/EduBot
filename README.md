@@ -139,4 +139,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 <div align="center">
   <p>Made with ❤️ for Indian students</p>
   <p><a href="https://github.com/rtx-exe-666/EduBot">⭐ Star us on GitHub</a></p>
+  <br/>
+  <p><strong>© 2026 Kuldeep Singh. All rights reserved.</strong></p>
 </div>
